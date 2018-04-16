@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/home/index.html", true)
             .and()
         .authorizeRequests()
-            .antMatchers("/book-service/**", "/rating-service/**", "/login*", "/").permitAll()
+            .antMatchers("/book-service/**", "/login*", "/people", "/" ).permitAll()
             .antMatchers("/book", "/", "/login*").permitAll()
             .anyRequest().authenticated()
             .and()

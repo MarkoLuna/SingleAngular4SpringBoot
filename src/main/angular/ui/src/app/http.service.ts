@@ -17,12 +17,12 @@ export class HttpService {
     return this.http.post('/logout', '', this.makeOptions())
   }
 
-  getBooks(): Observable<Response> {
-    return this.http.get('/book-service/books', this.makeOptions())
-  }
-
   getBook(): Observable<Response> {
     return this.http.get('/book', this.makeOptions())
+  }
+
+  getPeople(): Observable<Response> {
+    return this.http.get('/people', this.makeOptions())
   }
 
   updateBook(newBook: Book): Observable<Response> {

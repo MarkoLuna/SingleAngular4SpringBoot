@@ -1,3 +1,4 @@
+import { Person } from './Person';
 import {Component} from '@angular/core';
 import {OnInit} from '@angular/core';
 import {Principal} from './principal';
@@ -14,23 +15,44 @@ export class AppComponent implements OnInit {
   selectedBook: Book = null;
   principal: Principal = new Principal(false, [], '');
   loginFailed: Boolean = false;
+  people: Person[] = null;
 
   constructor(private httpService: HttpService) {}
 
   ngOnInit(): void {
-    this.httpService.me()
+    this.loadMyInformation();
+    this.loadUniqueBook();
+    this.loadPeople();
+  }
+
+  loadPeople() {
+    this.httpService.getPeople()
       .subscribe((response: Response) => {
         const principalJson = response.json();
-        console.log(principalJson);
-        this.principal = new Principal(principalJson.authenticated, principalJson.authorities, principalJson.principal.username);
+        this.people = principalJson._embedded.people;
+        console.log(this.people);
+        // this.selectedBook = principalJson;
       }, (error) => {
         console.log(error);
       });
+  }
+
+  loadUniqueBook() {
     this.httpService.getBook()
+        .subscribe((response: Response) => {
+          const principalJson = response.json();
+          // console.log(principalJson);
+          this.selectedBook = principalJson;
+        }, (error) => {
+          console.log(error);
+        });
+  }
+
+  loadMyInformation() {
+    this.httpService.me()
       .subscribe((response: Response) => {
         const principalJson = response.json();
-        // console.log(principalJson);
-        this.selectedBook = principalJson;
+        this.principal = new Principal(principalJson.authenticated, principalJson.authorities, principalJson.principal.username);
       }, (error) => {
         console.log(error);
       });

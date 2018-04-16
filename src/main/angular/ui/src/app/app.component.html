@@ -13,10 +13,31 @@
     <p *ngIf="principal.authenticated && !principal.isAdmin()" class="lead">Users can view and create ratings</p>
     <p *ngIf="principal.isAdmin()"  class="lead">Admins can do anything! </p>
 
+    <!--
     <div *ngIf="selectedBook">
       <p>ID: {{selectedBook.id}}</p>
       <p>Author: {{selectedBook.author}}</p>
       <p>Title: {{selectedBook.title}}</p>
+    </div>
+    -->
+
+    <div *ngIf="people">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let person of people; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ person.firstName }}</td>
+            <td>{{ person.lastName }}</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
 
   </div>
