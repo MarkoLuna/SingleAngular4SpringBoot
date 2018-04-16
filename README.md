@@ -1,2 +1,2 @@
-# SingleAngular4SpringBoot
-Single Angular 4 Spring Boot Application
+# SingleAngular5SpringBoot
+Single Angular 5 Spring Boot Application
