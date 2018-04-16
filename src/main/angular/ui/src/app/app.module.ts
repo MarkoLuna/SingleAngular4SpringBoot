@@ -5,11 +5,13 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {ClickStopPropagationDirective} from "./click-stop-propagation.directive";
 import {HttpService} from "./http.service";
+import { CapitalizePipe } from './capitalize.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClickStopPropagationDirective
+    ClickStopPropagationDirective,
+    CapitalizePipe
   ],
   imports: [
     BrowserModule,

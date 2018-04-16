@@ -2,6 +2,12 @@
 /build/
 !gradle/wrapper/gradle-wrapper.jar
 
+### JAVA ###
+*.class
+bin/
+out/
+src/main/resources/static/home/*
+
 ### STS ###
 .apt_generated
 .classpath

@@ -11,7 +11,7 @@ import {HttpService} from "./http.service";
 })
 export class AppComponent {
   selectedBook: Book = null;
-  principal: Principal = new Principal(false, []);
+  principal: Principal = new Principal(false, [], '');
   loginFailed: boolean = false;
 
   constructor(private httpService: HttpService){}
@@ -21,7 +21,15 @@ export class AppComponent {
       .subscribe((response: Response) => {
         let principalJson = response.json();
         console.log(principalJson);
-        this.principal = new Principal(principalJson.authenticated, principalJson.authorities);
+        this.principal = new Principal(principalJson.authenticated, principalJson.authorities, principalJson.principal.username);
+      }, (error) => {
+        console.log(error);
+      });
+    this.httpService.getBook()
+      .subscribe((response: Response) => {
+        let principalJson = response.json();
+        // console.log(principalJson);
+        this.selectedBook = principalJson;
       }, (error) => {
         console.log(error);
       });
@@ -32,7 +40,7 @@ export class AppComponent {
       .subscribe((response: Response) => {
         if (response.status === 200) {
           this.loginFailed = false;
-          this.principal = new Principal(false, []);
+          this.principal = new Principal(false, [], '');
           window.location.replace(response.url);
         }
       }, (error) => {

@@ -3,7 +3,7 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <a class="navbar-brand" href="#">Book Rater <span *ngIf="principal.isAdmin()">Admin</span></a>
-  <button *ngIf="principal.authenticated" type="button" class="btn btn-link" (click)="onLogout()">Logout asdf</button>
+  <button *ngIf="principal.authenticated" type="button" class="btn btn-link" (click)="onLogout()">Logout {{ principal.username | capitalize }}</button>
 </nav>
 
 <div class="jumbotron">
@@ -12,6 +12,12 @@
     <p *ngIf="!principal.authenticated" class="lead">Anyone can view the books.</p>
     <p *ngIf="principal.authenticated && !principal.isAdmin()" class="lead">Users can view and create ratings</p>
     <p *ngIf="principal.isAdmin()"  class="lead">Admins can do anything! </p>
+
+    <div *ngIf="selectedBook">
+      <p>ID: {{selectedBook.id}}</p>
+      <p>Author: {{selectedBook.author}}</p>
+      <p>Title: {{selectedBook.title}}</p>
+    </div>
 
   </div>
 </div>
