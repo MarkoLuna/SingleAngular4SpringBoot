@@ -6,12 +6,14 @@ import {AppComponent} from "./app.component";
 import {ClickStopPropagationDirective} from "./click-stop-propagation.directive";
 import {HttpService} from "./http.service";
 import { CapitalizePipe } from './capitalize.pipe';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ClickStopPropagationDirective,
-    CapitalizePipe
+    CapitalizePipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

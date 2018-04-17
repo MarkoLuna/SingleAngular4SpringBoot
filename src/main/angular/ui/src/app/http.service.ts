@@ -1,44 +1,41 @@
 import {Injectable} from '@angular/core';
+import { Person } from './Person'
 import {Observable} from 'rxjs/Observable';
 import {Response, Http, Headers, RequestOptions} from '@angular/http';
-import {Book} from './book';
-import {Rating} from './rating';
 
 @Injectable()
 export class HttpService {
 
-  constructor(private http: Http) { }
+    private CREATION_PERSON_LINK = 'http://localhost:8080/people';
 
-  me(): Observable<Response> {
-    return this.http.get('/me', this.makeOptions())
-  }
+    constructor(private http: Http) { }
 
-  logout(): Observable<Response> {
-    return this.http.post('/logout', '', this.makeOptions())
-  }
+    me(): Observable<Response> {
+        return this.http.get('/me', this.makeOptions())
+    }
 
-  getBook(): Observable<Response> {
-    return this.http.get('/book', this.makeOptions())
-  }
+    logout(): Observable<Response> {
+        return this.http.post('/logout', '', this.makeOptions())
+    }
 
-  getPeople(): Observable<Response> {
-    return this.http.get('/people', this.makeOptions())
-  }
+    getPeople(): Observable<Response> {
+        return this.http.get('/people', this.makeOptions())
+    }
 
-  updateBook(newBook: Book): Observable<Response> {
-    return this.http.put('/book-service/books/' + newBook.id, newBook,  this.makeOptions())
-  }
+    updatePerson(newPerson: Person): Observable<Response> {
+        return this.http.put(newPerson.link, newPerson, this.makeOptions())
+    }
 
-  deleteBook(book: Book): Observable<Response> {
-    return this.http.delete('/book-service/books/' + book.id,  this.makeOptions())
-  }
+    createPerson(newPerson: Person): Observable<Response> {
+        return this.http.post(this.CREATION_PERSON_LINK, newPerson, this.makeOptions())
+    }
 
-  createBook(newBook: Book): Observable<Response> {
-    return this.http.post('/book-service/books', newBook,  this.makeOptions())
-  }
+    deletePerson(person: Person): Observable<Response> {
+        return this.http.delete(person.link, this.makeOptions())
+    }
 
-  private makeOptions(): RequestOptions {
-    const headers = new Headers({'Content-Type': 'application/json'});
-    return new RequestOptions({headers: headers});
-  }
+    private makeOptions(): RequestOptions {
+        const headers = new Headers({ 'Content-Type': 'application/json' });
+        return new RequestOptions({ headers: headers });
+    }
 }

@@ -10,6 +10,13 @@ import java.util.List;
 @RepositoryRestResource(collectionResourceRel = "people", path = "people")
 public interface PersonRepository extends PagingAndSortingRepository<Person, Long> {
 
-    List<Person> findByLastName(@Param("name") String name);
+	/**
+	 * Buscar por los links: 
+	 * {@code 
+	 	http://localhost:8080/people/search
+	 	http://localhost:8080/people/search/findByLastName?lastName=Luna }
+	 * @see https://spring.io/guides/gs/accessing-data-rest/
+	 **/
+    List<Person> findByLastName(@Param("lastName") String lastName);
 
 }
