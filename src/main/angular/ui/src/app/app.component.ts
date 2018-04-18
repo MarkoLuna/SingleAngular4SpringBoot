@@ -1,9 +1,9 @@
 import { Person } from './Person';
-import {Component} from '@angular/core';
-import {OnInit} from '@angular/core';
-import {Principal} from './principal';
-import {Response} from '@angular/http';
-import {HttpService} from './http.service';
+import { Component } from '@angular/core';
+import { OnInit } from '@angular/core';
+import { Principal } from './principal';
+import { Response } from '@angular/http';
+import { HttpService } from './http.service';
 
 @Component({
     selector: 'app-root',

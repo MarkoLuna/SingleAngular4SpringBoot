@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Person } from './Person'
-import {Observable} from 'rxjs/Observable';
-import {Response, Http, Headers, RequestOptions} from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+import { Response, Http, Headers, RequestOptions } from '@angular/http';
 
 @Injectable()
 export class HttpService {
