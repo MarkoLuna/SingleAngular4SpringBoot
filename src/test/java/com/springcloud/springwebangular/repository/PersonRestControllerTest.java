@@ -83,7 +83,7 @@ public class PersonRestControllerTest {
     }
     
     @Test
-    public void userNotFound() throws Exception {
+    public void personNotFound() throws Exception {
     	mockMvc.perform(get("/people/12")
     			.content(this.json(new Person(null, null)))
     			.contentType(CONTENT_TYPE_JSON))
@@ -91,7 +91,7 @@ public class PersonRestControllerTest {
     }
 
     @Test
-    public void readSingleBookmark() throws Exception {
+    public void readSinglePerson() throws Exception {
         mockMvc.perform(get("/people/"+ this.peopleList.get(0).getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", is(this.peopleList.get(0).getFirstName())))
@@ -99,7 +99,7 @@ public class PersonRestControllerTest {
     }
 
     @Test
-    public void readBookmarks() throws Exception {
+    public void readPeople() throws Exception {
         mockMvc.perform(get("/people"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(CONTENT_TYPE_HAL_JSON))
@@ -111,7 +111,7 @@ public class PersonRestControllerTest {
     }
 
     @Test
-    public void createBookmark() throws Exception {
+    public void createPerson() throws Exception {
         String personJson = json(new Person("Marcos", "Luna"));
 
         this.mockMvc.perform(post("/people")
