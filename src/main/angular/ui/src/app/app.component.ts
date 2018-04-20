@@ -2,7 +2,6 @@ import { Person } from './Person';
 import { Component } from '@angular/core';
 import { OnInit } from '@angular/core';
 import { Principal } from './principal';
-import { Response } from '@angular/http';
 import { HttpService } from './http.service';
 
 @Component({
@@ -24,8 +23,8 @@ export class AppComponent implements OnInit {
 
     loadPeople() {
         this.httpService.getPeople()
-            .subscribe((response: Response) => {
-                const principalJson = response.json();
+            .subscribe((response: any) => {
+                const principalJson = response;
                 this.people = principalJson._embedded.people;
 
                 for (let i = 0; i < principalJson._embedded.people.length; i++) {
@@ -41,8 +40,8 @@ export class AppComponent implements OnInit {
 
     createPerson(person: Person) {
         this.httpService.createPerson(person)
-            .subscribe((response: Response) => {
-                const principalJson = response.json();
+            .subscribe((response: any) => {
+                const principalJson = response;
                 console.log(principalJson);
                 // refresh People
                 this.loadPeople();
@@ -53,8 +52,8 @@ export class AppComponent implements OnInit {
 
     updatePerson(person: Person) {
         this.httpService.updatePerson(person)
-            .subscribe((response: Response) => {
-                const principalJson = response.json();
+            .subscribe((response: any) => {
+                const principalJson = response;
                 console.log(principalJson);
                 // refresh People
                 this.loadPeople();
@@ -65,8 +64,8 @@ export class AppComponent implements OnInit {
 
     deletePerson(person: Person) {
         this.httpService.deletePerson(person)
-            .subscribe((response: Response) => {
-                const principalJson = response.json();
+            .subscribe((response: any) => {
+                const principalJson = response;
                 console.log(principalJson);
                 // refresh People
                 this.loadPeople();
@@ -77,8 +76,8 @@ export class AppComponent implements OnInit {
 
     loadMyInformation() {
         this.httpService.me()
-            .subscribe((response: Response) => {
-                const principalJson = response.json();
+            .subscribe((response: any) => {
+                const principalJson = response;
                 this.principal = new Principal(principalJson.authenticated, principalJson.authorities, principalJson.principal.username);
             }, (error) => {
                 console.log(error);
@@ -87,7 +86,7 @@ export class AppComponent implements OnInit {
 
     onLogout() {
         this.httpService.logout()
-            .subscribe((response: Response) => {
+            .subscribe((response: any) => {
                 if (response.status === 200) {
                     this.loginFailed = false;
                     this.principal = new Principal(false, [], '');

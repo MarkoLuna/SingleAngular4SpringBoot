@@ -5,7 +5,7 @@ export class Principal {
 
   constructor(authenticated: boolean, authorities: any[], username: string) {
     this.authenticated = authenticated;
-    authorities.map(auth => this.authorities.push(new Authority(auth.authority)))
+    authorities.map(auth => this.authorities.push(new Authority(auth.authority)));
     if (authenticated) {
       this.username = username;
     } else {
@@ -14,7 +14,7 @@ export class Principal {
   }
 
   isAdmin() {
-    return this.authorities.some((auth: Authority) => auth.authority.indexOf('ADMIN') > -1)
+    return this.authorities.some((auth: Authority) => auth.authority.indexOf('ADMIN') > -1);
   }
 }
 
